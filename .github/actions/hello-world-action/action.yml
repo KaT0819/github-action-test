@@ -1,6 +1,6 @@
 name: Hello World Action
 author: author_demo
-description: アクションファイルのパス参照
+description: アクションのパス参照
 inputs:
   # 環境変数 INPUT_NUMOCTOCATS
   numOctocats:
@@ -11,15 +11,21 @@ inputs:
   octocatEyeColor:
     description: 'Eye color of the Octocats'
     required: true
+    default: '8'
     deprecationMessage: '非推奨の警告メッセージです'
 outputs:
   random-number: # 出力のid
     description: "Random number"
     value: ${{ steps.random-number-generator.outputs.random-id }}
-  sum-s:
-    description: "Random number"
-
 runs:
   using: "composite"
   steps:
-    - run: echo "アクションファイルのイベント"
+    - run: echo "アクションファイルのイベント：${{ inputs.numOctocats }}"
+      shell: bash
+    - run: echo "環境変数の確認：${{ inputs.octocatEyeColor }}"
+      shell: bash
+    - id: random-number-generator
+      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+      shell: bash
+    - run: ${{ github.action_path }}/goodbye.sh
+      shell: bash
