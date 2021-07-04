@@ -19,3 +19,7 @@ outputs:
   sum-s:
     description: "Random number"
 
+runs:
+  using: "composite"
+  steps:
+    - run: echo "アクションファイルのイベント"
