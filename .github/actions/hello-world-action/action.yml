@@ -20,9 +20,9 @@ runs:
   using: "composite"
   steps:
     - run: echo "アクションファイルのイベント：${{ inputs.numOctocats }}"
-      sehll: bash
+      shell: bash
     - run: echo "アクションファイルのイベント：${{ inputs.octocatEyeColor }}"
-      sehll: bash
+      shell: bash
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
