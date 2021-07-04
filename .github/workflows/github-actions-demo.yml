@@ -1,6 +1,33 @@
 name: GitHub Actions Demo
 on: [push]
 jobs:
+  Upload-Example:
+    name: ファイルのアップロード
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          expr 1 + 1 > output.log
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with:
+          name: output-log-file
+          path: output.log
+  Download-Example:
+    name: ファイルのダウンロード
+    needs: Upload-Example
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: output-log-file
+      - run: echo `cat output.log`
+      - shell: bash
+        run: |
+          value=`cat output.log`
+          expr $value \* 9 > output.log
+
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
@@ -16,5 +43,5 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      # このステップは、アクションを含むディレクトリを参照します。
-      - uses: ./.github/actions/hello-world-action
+      # # このステップは、アクションを含むディレクトリを参照します。
+      # - uses: ./.github/actions/hello-world-action
