@@ -1,6 +1,6 @@
 name: Hello World Action
 author: author_demo
-description: アクションファイルのパス参照
+description: アクションのパス参照
 inputs:
   # 環境変数 INPUT_NUMOCTOCATS
   numOctocats:
@@ -16,10 +16,15 @@ outputs:
   random-number: # 出力のid
     description: "Random number"
     value: ${{ steps.random-number-generator.outputs.random-id }}
-  sum-s:
-    description: "Random number"
-
 runs:
   using: "composite"
   steps:
-    - run: echo "アクションファイルのイベント"
+    - run: echo "アクションファイルのイベント：${{ inputs.numOctocats }}"
+      sehll: bash
+    - run: echo "アクションファイルのイベント：${{ inputs.octocatEyeColor }}"
+      sehll: bash
+    - id: random-number-generator
+      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+      shell: bash
+    - run: ${{ github.action_path }}/goodbye.sh
+      shell: bash
