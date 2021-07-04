@@ -11,6 +11,7 @@ inputs:
   octocatEyeColor:
     description: 'Eye color of the Octocats'
     required: true
+    default: '8'
     deprecationMessage: '非推奨の警告メッセージです'
 outputs:
   random-number: # 出力のid
@@ -21,7 +22,7 @@ runs:
   steps:
     - run: echo "アクションファイルのイベント：${{ inputs.numOctocats }}"
       shell: bash
-    - run: echo "アクションファイルのイベント：${{ inputs.octocatEyeColor }}"
+    - run: echo "環境変数の確認：${{ inputs.octocatEyeColor }}"
       shell: bash
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
