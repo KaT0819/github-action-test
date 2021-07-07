@@ -17,10 +17,11 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: master merge
+          base: main
+          commit-message: main merge
           committer: GitHub <noreply@github.com>
           delete-branch: false
-          title: 'masterマージ'
+          title: 'mainマージ'
           body: |
             Update report
             - Updated with *today's* date
