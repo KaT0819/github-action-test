@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - develop
+      - main
   pull_request:
     types: [assigned, opened, synchronize, reopened]
 
@@ -30,9 +31,6 @@ jobs:
           labels: |
             report
             automated pr
-          assignees: KaT0819
-          reviewers: KaT0819
-          milestone: 1
 
       - name: Check outputs
         run: |
