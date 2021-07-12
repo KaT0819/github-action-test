@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: develop
+          ref: ${{ github.head_ref }}
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
