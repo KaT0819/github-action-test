@@ -1,0 +1,22 @@
+name: Create PullRequest to Master Actions
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - 'develop'
+
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: develop
+      - name: Create pull request
+        if: github.event.pull_request.merged == true
+        shell: bash
+        run: |
+          hub push
+          hub pull-request -b main -m "mainマージ ${{ steps.extract_version.outputs.version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
