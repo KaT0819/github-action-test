@@ -16,7 +16,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          base: main
+          base: ${{ github.head_ref }}
           commit-message: 'mainマージ'
           committer: GitHub <noreply@github.com>
           delete-branch: false
