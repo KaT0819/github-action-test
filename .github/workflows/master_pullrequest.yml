@@ -12,14 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: develop
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          base: main
-          commit-message: main merge
+          base: develop
+          commit-message: 'mainマージ'
           committer: GitHub <noreply@github.com>
           delete-branch: false
           title: 'mainマージ'
