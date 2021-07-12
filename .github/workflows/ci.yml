@@ -1,0 +1,17 @@
+name: Create PullRequest to Master Actions
+on:
+  push:
+    branches:
+      - 'develop'
+      - 'feature*'
+
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        shell: bash
+        run: go test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
